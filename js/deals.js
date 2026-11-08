@@ -503,7 +503,7 @@ function renderDeals(query = '') {
         let badge = '';
         let rowBgClass = '';
         let actionButtons = '';
-        const deleteBtn = `<button onclick="deleteRow('deals', '${d.id}')" class="btn btn-danger-soft btn-sm">${icon('trash')} حذف</button>`;
+        const deleteBtn = `<button onclick="deleteRow('deals', '${d.id}')" class="btn btn-danger-soft btn-sm btn-icon" title="حذف" aria-label="حذف">${icon('trash')}</button>`;
 
         if (d.status === 'completed') {
             badge = `<span class="badge badge-success">تم الشراء</span>`;
@@ -549,11 +549,11 @@ function renderDeals(query = '') {
                     </div>
                 </div>
             </td>
-            <td class="min-w-[150px]">
+            <td class="min-w-[130px]">
                 <div class="cell-primary">${esc(d.watch_brand) || '—'}</div>
                 <div class="cell-sub flex items-center gap-1">${icon('pin', 'w-3 h-3')} ${esc(d.client_location) || 'غير محدد'}</div>
             </td>
-            <td class="min-w-[200px] max-w-xs"><div class="clamp-2 text-slate-600">${esc(d.deal_details) || '<span class="text-slate-400">—</span>'}</div></td>
+            <td class="min-w-[140px] max-w-[200px]"><div class="clamp-2 text-slate-600">${esc(d.deal_details) || '<span class="text-slate-400">—</span>'}</div></td>
             <td>
                 <dl class="price-list">
                     <dt>طالب</dt><dd>${Number(d.amount_requested || 0).toLocaleString()}</dd>
@@ -561,7 +561,7 @@ function renderDeals(query = '') {
                     <dt>دفعتله</dt><dd class="text-emerald-700">${Number(d.amount_paid || 0).toLocaleString()}</dd>
                 </dl>
             </td>
-            <td class="min-w-[180px]">
+            <td class="min-w-[160px] max-w-[200px]">
                 <div class="flex items-center gap-1.5 text-slate-900 font-medium text-xs">${icon('clock', 'w-3.5 h-3.5 text-slate-400')} ${d.meeting_time ? new Date(d.meeting_time).toLocaleString('ar-EG') : 'غير محدد'}</div>
                 <div class="cell-sub">خط الإرسال: ${waInst ? `${esc(waInst.instance_name)} <span class="cell-mono">(${esc(waInst.phone_number)})</span>` : 'توزيع تلقائي'}</div>
                 ${esc(d.reminder_message) ? `<div class="msg-chip reminder" title="${esc(d.reminder_message)}">${icon('chat')}<span class="truncate">${esc(d.reminder_message)}</span></div>` : ''}
